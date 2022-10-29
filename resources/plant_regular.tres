@@ -9,4 +9,5 @@ growth_stages = 4
 time_before_grow = 3.0
 can_wilt = true
 time_before_wilt = 10.0
+action_time = 0.7
 points = 100

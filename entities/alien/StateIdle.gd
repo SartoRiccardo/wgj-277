@@ -16,8 +16,11 @@ func update(delta : float) -> void:
 		if nearest_plant:
 			nearest_plant.set_glow(false)
 		if new_nearest_plant:
-			new_nearest_plant.set_glow(true)
+			new_nearest_plant.set_glow(new_nearest_plant.is_interactable())
 		nearest_plant = new_nearest_plant
+	elif is_instance_valid(nearest_plant) and \
+			nearest_plant.is_interactable() != nearest_plant.is_glowing:
+		nearest_plant.set_glow(nearest_plant.is_interactable())
 	
 	if Input.is_action_pressed("interact"):
 		if nearest_plant and (nearest_plant.is_waterable() or nearest_plant.is_harvestable()):

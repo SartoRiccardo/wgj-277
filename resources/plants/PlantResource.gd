@@ -6,4 +6,5 @@ export (int) var growth_stages = 4
 export (float) var time_before_grow = 3.0
 export (bool) var can_wilt = true
 export (float) var time_before_wilt = 10.0
+export (float) var action_time = 0.7
 export (int) var points = 100

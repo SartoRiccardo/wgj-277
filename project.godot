@@ -27,7 +27,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Plant",
 "language": "GDScript",
-"path": "res://entities/Plant.gd"
+"path": "res://entities/plants/Plant.gd"
+}, {
+"base": "Node2D",
+"class": "PlantBenign",
+"language": "GDScript",
+"path": "res://entities/plants/PlantBenign.gd"
 }, {
 "base": "Resource",
 "class": "PlantResource",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "BehaviorModifier": "",
 "BenignPlantResource": "",
 "Plant": "",
+"PlantBenign": "",
 "PlantResource": ""
 }
 

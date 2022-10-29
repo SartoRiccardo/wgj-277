@@ -1,6 +1,9 @@
 extends Node2D
 class_name Plant
 
+signal grow(plant)
+signal harvest(plant)
+
 export (Resource) var data
 
 var times_grown := 0
@@ -13,10 +16,20 @@ func _ready() -> void:
 		queue_free()
 		return
 	
-	$TimerGrow.connect("timeout", self, "_on_grow_attempt")
+	$TimerGrow.connect("timeout", self, "_on_grow")
 	$TimerWilt.connect("timeout", self, "_on_wilted")
-	$TimerGrow.start(data.time_before_grow)
+	$TimerInteract.connect("timeout", self, "_on_player_interaction")
+	$TimerWilt.start(data.time_before_wilt)
 
+
+func _process(_d):
+	Console.writeln([
+		stepify($TimerGrow.time_left, 0.01),
+		stepify($TimerWilt.time_left, 0.01), 
+#		$AnimationPlayer.is_playing(),
+		stepify($TimerInteract.time_left, 0.01),
+	])
+	
 # Public methods
 
 func grow() -> void:
@@ -29,8 +42,9 @@ func grow() -> void:
 		$AnimationPlayer.play("grow")
 		yield($AnimationPlayer, "animation_finished")
 	
-	$TimerGrow.start(data.time_before_grow)
-	$TimerWilt.stop()
+	$TimerWilt.start(data.time_before_wilt)
+	$TimerGrow.stop()
+	emit_signal("grow", self)
 
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
@@ -39,20 +53,32 @@ func is_waterable() -> bool:
 	return false
 
 func is_harvestable() -> bool:
-	return wilted || times_grown >= data.growth_stages-1
+	return true
 
-func harvest() -> void:
-	_despawn()
+func is_interactable() -> bool:
+	return is_waterable() or is_harvestable()
+
+func set_interact(action: bool) -> void:
+	if action and $TimerInteract.is_stopped():
+		$TimerInteract.start(data.action_time)
+	else:
+		$TimerInteract.stop()
 
 func set_glow(glow : bool) -> void:
 	if glow == is_glowing:
 		return
 	is_glowing = glow
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation != "glow":
+		yield($AnimationPlayer, "animation_finished")
 	if is_glowing:
 		$AnimationPlayer.play("glow")
 	else:
 		$AnimationPlayer.stop()
 		$Sprite.material.set_shader_param("intensity", 0.0)
+
+func harvest() -> void:
+	emit_signal("harvest", self)
+	_despawn()
 
 # Private methods
 
@@ -67,7 +93,8 @@ func _despawn() -> void:
 
 # Event handlers
 
-func _on_grow_attempt() -> void:
+func _on_grow() -> void:
+	grow()
 	if data.can_wilt:
 		$TimerWilt.start(data.time_before_wilt)
 
@@ -75,3 +102,6 @@ func _on_wilted() -> void:
 	wilted = true
 	$TimerGrow.set_paused(true)
 	$AnimationPlayer.play("wilt")
+
+func _on_player_interaction() -> void:
+	_despawn()
