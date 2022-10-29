@@ -1,9 +1,11 @@
 extends Node2D
+class_name Plant
 
 export (Resource) var data
 
 var times_grown := 0
 var wilted := false
+var is_glowing := false
 var modifiers = []
 
 func _ready() -> void:
@@ -33,11 +35,24 @@ func grow() -> void:
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
 
+func is_waterable() -> bool:
+	return false
+
 func is_harvestable() -> bool:
 	return wilted || times_grown >= data.growth_stages-1
 
 func harvest() -> void:
 	_despawn()
+
+func set_glow(glow : bool) -> void:
+	if glow == is_glowing:
+		return
+	is_glowing = glow
+	if is_glowing:
+		$AnimationPlayer.play("glow")
+	else:
+		$AnimationPlayer.stop()
+		$Sprite.material.set_shader_param("intensity", 0.0)
 
 # Private methods
 
