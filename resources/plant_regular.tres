@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/plants/PlantResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+growth_stages_sprite = 4
+growth_stages = 4
+time_before_grow = 3.0
+can_wilt = true
+time_before_wilt = 10.0
+points = 100
