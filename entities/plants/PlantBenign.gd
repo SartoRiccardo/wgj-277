@@ -1,19 +1,18 @@
 extends "res://entities/plants/Plant.gd"
 class_name PlantBenign
 
-
 func _ready() -> void:
-	$TimerWater.connect("timeout", self, "_on_watered")
+	$TimerWilt.start(modifiers.wilt_time())
 
 # Public methods
 
 # Override
 func is_waterable() -> bool:
-	return !wilted and $TimerGrow.is_stopped()
+	return !despawning and !wilted and $TimerGrow.is_stopped()
 
 # Override
 func is_harvestable() -> bool:
-	return wilted or times_grown >= data.growth_stages-1
+	return !despawning and (wilted or times_grown >= data.growth_stages-1)
 
 # Event handlers
 
@@ -21,6 +20,6 @@ func is_harvestable() -> bool:
 func _on_player_interaction() -> void:
 	if is_harvestable():
 		harvest()
-	else:
+	else:  # Watered
 		$TimerWilt.stop()
-		$TimerGrow.start(data.time_before_grow)
+		$TimerGrow.start(modifiers.grow_time())

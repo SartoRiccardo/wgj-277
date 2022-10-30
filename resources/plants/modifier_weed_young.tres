@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-behavior_type = "weed_young"
-value = 0.55
+type = "weed"
+value = 0.75

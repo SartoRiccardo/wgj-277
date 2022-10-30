@@ -1,7 +1,7 @@
 extends Camera2D
 
 export (Color) var background_color := Color.black
-export (NodePath) var following_path := ""
+export (NodePath) var following_path := NodePath(".")
 var following : Node2D = null
 
 func _ready():

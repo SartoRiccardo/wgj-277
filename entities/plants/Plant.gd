@@ -6,10 +6,12 @@ signal harvest(plant)
 
 export (Resource) var data
 
+onready var modifiers = $ModifierManager
+
 var times_grown := 0
 var wilted := false
 var is_glowing := false
-var modifiers = []
+var despawning := false
 
 func _ready() -> void:
 	if data == null:
@@ -19,15 +21,20 @@ func _ready() -> void:
 	$TimerGrow.connect("timeout", self, "_on_grow")
 	$TimerWilt.connect("timeout", self, "_on_wilted")
 	$TimerInteract.connect("timeout", self, "_on_player_interaction")
-	$TimerWilt.start(data.time_before_wilt)
+	modifiers.connect("grow_time_change", self, "_on_grow_time_change")
+	modifiers.connect("wilt_time_change", self, "_on_wilt_time_change")
 
 
 func _process(_d):
 	Console.writeln([
-		stepify($TimerGrow.time_left, 0.01),
-		stepify($TimerWilt.time_left, 0.01), 
+		stepify($TimerGrow.get_progress(), 0.01),
+		stepify($TimerWilt.get_progress(), 0.01), 
+		self,
+#		stepify($TimerGrow.time_left, 0.01),
+#		stepify($TimerWilt.time_left, 0.01), 
 #		$AnimationPlayer.is_playing(),
-		stepify($TimerInteract.time_left, 0.01),
+#		stepify($TimerInteract.time_left, 0.01),
+#		modifiers.modifiers,
 	])
 	
 # Public methods
@@ -35,6 +42,7 @@ func _process(_d):
 func grow() -> void:
 	if times_grown < data.growth_stages-1:
 		times_grown += 1
+	emit_signal("grow", self)
 	
 	var sprite_atlas_offset := _get_sprite_offset()
 	if sprite_atlas_offset != $Sprite.texture.region.position.x and \
@@ -42,9 +50,8 @@ func grow() -> void:
 		$AnimationPlayer.play("grow")
 		yield($AnimationPlayer, "animation_finished")
 	
-	$TimerWilt.start(data.time_before_wilt)
+	$TimerWilt.start(modifiers.wilt_time())
 	$TimerGrow.stop()
-	emit_signal("grow", self)
 
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
@@ -53,7 +60,7 @@ func is_waterable() -> bool:
 	return false
 
 func is_harvestable() -> bool:
-	return true
+	return !despawning
 
 func is_interactable() -> bool:
 	return is_waterable() or is_harvestable()
@@ -87,6 +94,7 @@ func _get_sprite_offset() -> int:
 	return sprite_atlas_idx * $Sprite.texture.region.size.x
 
 func _despawn() -> void:
+	despawning = true
 	$AnimationPlayer.play("despawn")
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()
@@ -96,7 +104,7 @@ func _despawn() -> void:
 func _on_grow() -> void:
 	grow()
 	if data.can_wilt:
-		$TimerWilt.start(data.time_before_wilt)
+		$TimerWilt.start(modifiers.wilt_time())
 
 func _on_wilted() -> void:
 	wilted = true
@@ -105,3 +113,13 @@ func _on_wilted() -> void:
 
 func _on_player_interaction() -> void:
 	_despawn()
+
+func _on_grow_time_change() -> void:
+	if $TimerGrow.is_stopped():
+		return
+	Helpers.update_timer_proportional($TimerGrow, modifiers.grow_time())
+
+func _on_wilt_time_change() -> void:
+	if $TimerWilt.is_stopped():
+		return
+	Helpers.update_timer_proportional($TimerWilt, modifiers.wilt_time())

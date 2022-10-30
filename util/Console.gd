@@ -1,12 +1,12 @@
 extends Node
 
-var permanent = ""
+var permanent_text = ""
 
 func _process(_d) -> void:
-	$MarginContainer/PanelContainer/Label.text = permanent
+	$MarginContainer/PanelContainer/Label.text = permanent_text
 
 func writeln(data, permanent=false) -> void:
 	if permanent:
-		permanent += str(data) + "\n"
+		permanent_text += str(data) + "\n"
 	else:
 		$MarginContainer/PanelContainer/Label.text += str(data) + "\n"

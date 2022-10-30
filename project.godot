@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "PlantResource",
 "language": "GDScript",
 "path": "res://resources/plants/PlantResource.gd"
+}, {
+"base": "Timer",
+"class": "SettableTimer",
+"language": "GDScript",
+"path": "res://util/SettableTimer.gd"
 } ]
 _global_script_class_icons={
 "Alien": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "BenignPlantResource": "",
 "Plant": "",
 "PlantBenign": "",
-"PlantResource": ""
+"PlantResource": "",
+"SettableTimer": ""
 }
 
 [application]
@@ -58,6 +64,10 @@ config/icon="res://icon.png"
 
 Console="*res://util/Console.tscn"
 Helpers="*res://util/Helpers.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

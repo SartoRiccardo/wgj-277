@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://entities/plants/Plant.gd" type="Script" id=1]
+[ext_resource path="res://util/SettableTimer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/plants/ModifierManager.gd" type="Script" id=3]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -114,7 +116,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Interact:monitorable")
+tracks/5/path = NodePath("Shape:monitorable")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -179,7 +181,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Interact:monitorable")
+tracks/4/path = NodePath("Shape:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -340,22 +342,22 @@ material = SubResource( 4 )
 texture = SubResource( 11 )
 offset = Vector2( 0, -32 )
 
-[node name="Interact" type="Area2D" parent="."]
+[node name="Shape" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 16
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shape"]
 position = Vector2( 0, -11 )
 shape = SubResource( 1 )
 
-[node name="TimerGrow" type="Timer" parent="."]
+[node name="TimerGrow" parent="." instance=ExtResource( 2 )]
 one_shot = true
 
-[node name="TimerWilt" type="Timer" parent="."]
+[node name="TimerWilt" parent="." instance=ExtResource( 2 )]
 one_shot = true
 
-[node name="TimerInteract" type="Timer" parent="."]
+[node name="TimerInteract" parent="." instance=ExtResource( 2 )]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -366,3 +368,6 @@ anims/glow = SubResource( 10 )
 anims/grow = SubResource( 6 )
 anims/spawn = SubResource( 9 )
 anims/wilt = SubResource( 7 )
+
+[node name="ModifierManager" type="Node" parent="."]
+script = ExtResource( 3 )

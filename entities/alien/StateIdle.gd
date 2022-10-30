@@ -23,7 +23,7 @@ func update(delta : float) -> void:
 		nearest_plant.set_glow(nearest_plant.is_interactable())
 	
 	if Input.is_action_pressed("interact"):
-		if nearest_plant and (nearest_plant.is_waterable() or nearest_plant.is_harvestable()):
+		if nearest_plant and nearest_plant.is_interactable():
 			player.call_deferred("_change_state", "interacting")
 			player.interact_target = nearest_plant
 
