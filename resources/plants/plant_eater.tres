@@ -8,5 +8,6 @@ growth_stages_sprite = 4
 growth_stages = 4
 time_before_grow = 10.0
 can_wilt = true
-time_before_wilt = 3600.0
+time_before_wilt = 5.0
+action_time = 0.7
 points = 25

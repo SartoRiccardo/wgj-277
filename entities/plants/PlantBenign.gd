@@ -2,6 +2,9 @@ extends "res://entities/plants/Plant.gd"
 class_name PlantBenign
 
 func _ready() -> void:
+	if data == null:
+		return
+	
 	$TimerWilt.start(modifiers.wilt_time())
 
 # Public methods

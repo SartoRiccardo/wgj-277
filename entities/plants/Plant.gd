@@ -43,15 +43,13 @@ func grow() -> void:
 	if times_grown < data.growth_stages-1:
 		times_grown += 1
 	emit_signal("grow", self)
+	$TimerWilt.start(modifiers.wilt_time())
+	$TimerGrow.stop()
 	
 	var sprite_atlas_offset := _get_sprite_offset()
 	if sprite_atlas_offset != $Sprite.texture.region.position.x and \
 			sprite_atlas_offset < $Sprite.texture.atlas.get_width():
 		$AnimationPlayer.play("grow")
-		yield($AnimationPlayer, "animation_finished")
-	
-	$TimerWilt.start(modifiers.wilt_time())
-	$TimerGrow.stop()
 
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
@@ -87,17 +85,18 @@ func harvest() -> void:
 	emit_signal("harvest", self)
 	_despawn()
 
+func die() -> void:
+	_despawn(true)
+
 # Private methods
 
 func _get_sprite_offset() -> int:
 	var sprite_atlas_idx := floor(float(times_grown)/data.growth_stages * data.growth_stages_sprite)
 	return sprite_atlas_idx * $Sprite.texture.region.size.x
 
-func _despawn() -> void:
+func _despawn(killed=false) -> void:
 	despawning = true
-	$AnimationPlayer.play("despawn")
-	yield($AnimationPlayer, "animation_finished")
-	queue_free()
+	$AnimationPlayer.play("death" if killed else "despawn")
 
 # Event handlers
 

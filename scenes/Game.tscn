@@ -4,8 +4,8 @@
 [ext_resource path="res://entities/Alien.tscn" type="PackedScene" id=2]
 [ext_resource path="res://environ/PlayerCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/barrier.png" type="Texture" id=4]
-[ext_resource path="res://entities/plants/PlantWeed.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/plants/PlantRegular.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/plants/PlantEater.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 21, 21, 0, 21, 0, 0, 21, 0 )
@@ -75,19 +75,18 @@ __meta__ = {
 }
 
 [node name="Benign-L2" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( -153, 0 )
-
-[node name="Benign-L1" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( -220, 0 )
+position = Vector2( -137, -3 )
 
 [node name="Benign-R" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( -48, 0 )
+position = Vector2( -55, -6 )
 
-[node name="Weed" parent="Plants" instance=ExtResource( 5 )]
-position = Vector2( -184, 0 )
+[node name="PlantEater" parent="Plants" instance=ExtResource( 7 )]
+position = Vector2( -96, 0 )
 
-[node name="Weed2" parent="Plants" instance=ExtResource( 5 )]
-position = Vector2( -244, 0 )
+[node name="ParticleRoot" type="Node2D" parent="." groups=["particle_root"]]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -54 )
