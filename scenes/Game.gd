@@ -6,6 +6,9 @@ func _ready() -> void:
 	$CanvasLayer/GameUI.set_points(points)
 	$GameTime.connect("timeout", self, "_on_game_end")
 	EventBus.connect("harvest", self, "_on_plant_harvested")
+	
+	if not Engine.editor_hint:
+		$TileMap.tile_set.tile_set_modulate(1, Color.transparent)
 
 func _process(delta):
 	$CanvasLayer/GameUI.set_time_left(ceil($GameTime.time_left))
