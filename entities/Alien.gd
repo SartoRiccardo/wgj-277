@@ -13,6 +13,7 @@ var inputs = []
 var mov_vector := Vector2.ZERO
 var velocity := Vector2.ZERO
 var speed := 0.0
+var controllable := true
 var current_state : Node = null
 # Interacting state
 var interact_target : Plant = null
@@ -21,11 +22,13 @@ func _ready() -> void:
 	for state in $States.get_children():
 		if state.has_method("init"):
 			state.init(self)
+	EventBus.connect("game_end", self, "_on_game_ended")
 	_change_state("idle")
 
 func _process(delta : float) -> void:
 	_register_inputs()
 	current_state.update(delta)
+	velocity = (speed * mov_vector).linear_interpolate(velocity, pow(2, -20*delta))
 	velocity = move_and_slide(velocity)
 
 # Protected methods
@@ -48,17 +51,15 @@ func _register_inputs() -> void:
 		elif Input.is_action_just_released(evt):
 			inputs.erase(evt)
 
-func _update_movement(delta : float) -> void:
-	var new_mov_vector := Vector2.ZERO
+func _update_movement_speed(delta : float) -> void:
+	mov_vector = Vector2.ZERO
 	if inputs.size() > 0:
-		new_mov_vector = Vector2.LEFT if inputs[inputs.size()-1] == "move_left" else Vector2.RIGHT
+		mov_vector = Vector2.LEFT if inputs[inputs.size()-1] == "move_left" else Vector2.RIGHT
 	
-	if new_mov_vector == Vector2.ZERO:
+	if mov_vector == Vector2.ZERO:
 		_slow_movement(delta)
 	else:
 		speed = clamp(speed + ACCELLERATION*delta, 0, MAX_SPEED)
-	velocity = (speed * new_mov_vector).linear_interpolate(velocity, pow(2, -20*delta))
-	mov_vector = new_mov_vector
 
 func _slow_movement(delta : float) -> void:
 	speed = lerp(0, velocity.x, pow(2, -15*delta))
@@ -90,3 +91,7 @@ func _get_nearest_plant() -> Plant:
 	return nearest_plant
 
 # Event handlers
+
+func _on_game_ended() -> void:
+	controllable = false
+	mov_vector = Vector2.ZERO

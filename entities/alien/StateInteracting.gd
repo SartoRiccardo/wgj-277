@@ -1,5 +1,8 @@
 extends "res://entities/alien/BaseState.gd"
 
+func _ready() -> void:
+	EventBus.connect("game_end", self, "_on_game_end")
+
 # Override
 func enter() -> void:
 	player.speed = 0.0
@@ -22,3 +25,6 @@ func exit() -> void:
 	if is_instance_valid(player.interact_target):
 		player.interact_target.set_interact(false)
 	player.interact_target = null
+
+func _on_game_end() -> void:
+	player.call_deferred("_change_state", "idle")

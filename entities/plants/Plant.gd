@@ -21,21 +21,23 @@ func _ready() -> void:
 	$TimerGrow.connect("timeout", self, "_on_grow")
 	$TimerWilt.connect("timeout", self, "_on_wilted")
 	$TimerInteract.connect("timeout", self, "_on_player_interaction")
+	$TimerDespawn.connect("timeout", self, "_on_wilt_despawn")
 	modifiers.connect("grow_time_change", self, "_on_grow_time_change")
 	modifiers.connect("wilt_time_change", self, "_on_wilt_time_change")
-
+	EventBus.connect("game_end", self, "_on_game_end")
 
 func _process(_d):
-	Console.writeln([
-		stepify($TimerGrow.get_progress(), 0.01),
-		stepify($TimerWilt.get_progress(), 0.01), 
-		self,
+#	Console.writeln([
+#		stepify($TimerGrow.get_progress(), 0.01),
+#		stepify($TimerWilt.get_progress(), 0.01), 
+#		self,
 #		stepify($TimerGrow.time_left, 0.01),
 #		stepify($TimerWilt.time_left, 0.01), 
-#		$AnimationPlayer.is_playing(),
 #		stepify($TimerInteract.time_left, 0.01),
 #		modifiers.modifiers,
-	])
+#		times_grown,data.growth_stages-1
+#	])
+	pass
 	
 # Public methods
 
@@ -49,7 +51,7 @@ func grow() -> void:
 	var sprite_atlas_offset := _get_sprite_offset()
 	if sprite_atlas_offset != $Sprite.texture.region.position.x and \
 			sprite_atlas_offset < $Sprite.texture.atlas.get_width():
-		$AnimationPlayer.play("grow")
+		$AnimationBehavior.play("grow")
 
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
@@ -58,7 +60,7 @@ func is_waterable() -> bool:
 	return false
 
 func is_harvestable() -> bool:
-	return !despawning
+	return !(despawning or wilted)
 
 func is_interactable() -> bool:
 	return is_waterable() or is_harvestable()
@@ -73,16 +75,17 @@ func set_glow(glow : bool) -> void:
 	if glow == is_glowing:
 		return
 	is_glowing = glow
-	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation != "glow":
-		yield($AnimationPlayer, "animation_finished")
+	if $AnimationBehavior.is_playing() and $AnimationBehavior.current_animation != "glow":
+		yield($AnimationBehavior, "animation_finished")
 	if is_glowing:
-		$AnimationPlayer.play("glow")
+		$AnimationBehavior.play("glow")
 	else:
-		$AnimationPlayer.stop()
+		$AnimationBehavior.stop()
 		$Sprite.material.set_shader_param("intensity", 0.0)
 
 func harvest() -> void:
 	emit_signal("harvest", self)
+	EventBus.emit_signal("harvest", times_grown < data.growth_stages-1, data.points)
 	_despawn()
 
 func die() -> void:
@@ -96,7 +99,7 @@ func _get_sprite_offset() -> int:
 
 func _despawn(killed=false) -> void:
 	despawning = true
-	$AnimationPlayer.play("death" if killed else "despawn")
+	$AnimationState.play("death" if killed else "despawn")
 
 # Event handlers
 
@@ -108,10 +111,14 @@ func _on_grow() -> void:
 func _on_wilted() -> void:
 	wilted = true
 	$TimerGrow.set_paused(true)
-	$AnimationPlayer.play("wilt")
+	$AnimationBehavior.play("wilt")
+	$TimerDespawn.start()
+
+func _on_wilt_despawn() -> void:
+	$AnimationState.play("death")
 
 func _on_player_interaction() -> void:
-	_despawn()
+	harvest()
 
 func _on_grow_time_change() -> void:
 	if $TimerGrow.is_stopped():
@@ -122,3 +129,15 @@ func _on_wilt_time_change() -> void:
 	if $TimerWilt.is_stopped():
 		return
 	Helpers.update_timer_proportional($TimerWilt, modifiers.wilt_time())
+
+func _on_game_end() -> void:
+	$Shape.set_monitorable(false)
+	var timers_to_pause = [$TimerGrow, $TimerWilt, $TimerInteract]
+	for timer in timers_to_pause:
+		timer.set_paused(true)
+	
+	var animations_to_finish = [$AnimationBehavior, $AnimationState]
+	for animation in animations_to_finish:
+		if animation.is_playing():
+			yield(animation, "animation_finished")
+		animation.stop()

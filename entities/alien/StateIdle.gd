@@ -3,12 +3,11 @@ extends "res://entities/alien/BaseState.gd"
 var nearest_plant : Plant = null
 
 # Override
-func enter() -> void:
-	pass
-
-# Override
 func update(delta : float) -> void:
-	player._update_movement(delta)
+	if player.controllable:
+		player._update_movement_speed(delta)
+	else:
+		player._slow_movement(delta)
 	player._update_sprite()
 	
 	var new_nearest_plant = player._get_nearest_plant()
@@ -22,7 +21,7 @@ func update(delta : float) -> void:
 			nearest_plant.is_interactable() != nearest_plant.is_glowing:
 		nearest_plant.set_glow(nearest_plant.is_interactable())
 	
-	if Input.is_action_pressed("interact"):
+	if Input.is_action_pressed("interact") and player.controllable:
 		if nearest_plant and nearest_plant.is_interactable():
 			player.call_deferred("_change_state", "interacting")
 			player.interact_target = nearest_plant

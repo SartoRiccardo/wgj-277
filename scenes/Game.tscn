@@ -5,8 +5,8 @@
 [ext_resource path="res://environ/PlayerCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/barrier.png" type="Texture" id=4]
 [ext_resource path="res://ui/GameUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://entities/plants/PlantRegular.tscn" type="PackedScene" id=6]
-[ext_resource path="res://entities/plants/PlantEater.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Game.gd" type="Script" id=8]
+[ext_resource path="res://environ/PlantSpawner.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 21, 21, 0, 21, 0, 0, 21, 0 )
@@ -58,6 +58,7 @@ points = PoolVector2Array( 21, 21, 0, 21, 0, 0, 21, 0 )
 1/z_index = 0
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -75,15 +76,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Benign-L2" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( -137, -3 )
-
-[node name="Benign-R" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( -55, -6 )
-
-[node name="PlantEater" parent="Plants" instance=ExtResource( 7 )]
-position = Vector2( -96, 0 )
-
 [node name="ParticleRoot" type="Node2D" parent="." groups=["particle_root"]]
 __meta__ = {
 "_edit_lock_": true
@@ -94,6 +86,20 @@ position = Vector2( 0, -54 )
 current = true
 background_color = Color( 0.662745, 0.811765, 0.972549, 1 )
 following_path = NodePath("../Alien")
+
+[node name="GameTime" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="PlantSpawner" parent="." instance=ExtResource( 9 )]
+plant_min_distance = 10.0
+
+[node name="SpawnBoxCorner1" type="Position2D" parent="PlantSpawner"]
+position = Vector2( 279, 0 )
+
+[node name="SpawnBoxCorner2" type="Position2D" parent="PlantSpawner"]
+position = Vector2( -293, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

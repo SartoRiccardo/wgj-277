@@ -46,7 +46,8 @@ func _attempt_grow() -> void:
 		absorb_particles.set_target(global_position)
 		
 		nearest.die()
-		yield(get_tree().create_timer(1.2), "timeout")
+		$GrowDelay.start()
+		yield($GrowDelay, "timeout")
 		grow()
 
 # Event handlers

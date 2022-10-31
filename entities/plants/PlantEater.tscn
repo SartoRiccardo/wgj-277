@@ -76,3 +76,7 @@ monitorable = false
 position = Vector2( 0, -11 )
 rotation = 1.5708
 shape = SubResource( 2 )
+
+[node name="GrowDelay" type="Timer" parent="." index="6"]
+wait_time = 1.2
+one_shot = true

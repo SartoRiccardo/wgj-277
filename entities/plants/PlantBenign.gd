@@ -15,7 +15,7 @@ func is_waterable() -> bool:
 
 # Override
 func is_harvestable() -> bool:
-	return !despawning and (wilted or times_grown >= data.growth_stages-1)
+	return .is_harvestable() and times_grown >= data.growth_stages-1
 
 # Event handlers
 
