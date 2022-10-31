@@ -33,8 +33,8 @@ func _attempt_grow() -> void:
 			continue
 		
 		var plant_distance := plant.global_position.distance_squared_to(global_position)
-		if nearest == null and !plant.wilted or \
-				plant_distance < nearest_distance:
+		if (nearest == null or plant_distance < nearest_distance) and \
+				not plant.wilted:
 			nearest = plant
 			nearest_distance = plant_distance
 	
