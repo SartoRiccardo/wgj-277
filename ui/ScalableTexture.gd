@@ -1,5 +1,6 @@
 tool
 extends TextureRect
+class_name ScalableTexture
 
 export (String, "height", "width") var keep := "height"
 

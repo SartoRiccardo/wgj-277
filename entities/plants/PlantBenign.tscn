@@ -57,6 +57,3 @@ script = ExtResource( 3 )
 material = SubResource( 4 )
 texture = SubResource( 5 )
 offset = Vector2( 0, -20 )
-
-[node name="Texture" parent="InteractIcon" index="0"]
-scale = Vector2( 1, 1 )

@@ -4,3 +4,4 @@ extends Node
 signal game_end
 # Plant
 signal harvest(uprooted, points)
+signal watered

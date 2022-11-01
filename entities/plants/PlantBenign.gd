@@ -30,6 +30,7 @@ func _on_player_interaction() -> void:
 	if is_harvestable():
 		harvest()
 	else:  # Watered
+		EventBus.emit_signal("watered")
 		$InteractIcon.retract()
 		$TimerWilt.stop()
 		$TimerGrow.start(modifiers.grow_time())

@@ -11,12 +11,6 @@ onready var icons = {
 func _ready() -> void:
 	set_icon("water")
 
-func _process(delta):
-	Console.writeln([
-		scale,
-		position
-	])
-
 func set_icon(icon_type : String) -> void:
 	$Texture.texture = icons[icon_type]
 	$Texture.offset = $Texture.texture.get_size()/2.0

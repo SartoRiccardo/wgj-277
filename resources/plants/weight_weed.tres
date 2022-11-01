@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource( 1 )
 plant = ExtResource( 2 )
-weight = 20.0
+weight = 12.0

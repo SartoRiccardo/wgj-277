@@ -1,15 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ui.png" type="Texture" id=1]
-[ext_resource path="res://ui/TextureRect.gd" type="Script" id=2]
 [ext_resource path="res://ui/HoverableButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/GameUI.gd" type="Script" id=4]
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=5]
 [ext_resource path="res://ui/PauseButton.gd" type="Script" id=6]
+[ext_resource path="res://ui/ScalableTexture.tscn" type="PackedScene" id=7]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 11, 13 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 41, 0, 11, 11 )
+margin = Rect2( 0, 1, 1, 2 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
@@ -27,16 +34,16 @@ margin_top = 5.0
 margin_right = 331.0
 margin_bottom = 27.0
 size_flags_vertical = 0
-custom_constants/separation = 6
+custom_constants/separation = 1
 
-[node name="TimerIcon" type="TextureRect" parent="HBox1"]
-margin_right = 18.6154
+[node name="TimerIcon" parent="HBox1" instance=ExtResource( 7 )]
+texture = SubResource( 13 )
+
+[node name="VSeparator" type="VSeparator" parent="HBox1"]
+margin_left = 19.0
+margin_right = 23.0
 margin_bottom = 22.0
-rect_min_size = Vector2( 18.6154, 0 )
-size_flags_vertical = 5
-texture = SubResource( 2 )
-stretch_mode = 1
-script = ExtResource( 2 )
+custom_styles/separator = SubResource( 15 )
 
 [node name="TimeLbl" type="Label" parent="HBox1"]
 margin_left = 24.0
@@ -47,14 +54,20 @@ text = "45"
 valign = 1
 
 [node name="PointsLbl" type="Label" parent="HBox1"]
-margin_left = 42.0
-margin_right = 298.0
+margin_left = 37.0
+margin_right = 280.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
 text = "1000"
 align = 2
 valign = 1
+
+[node name="PointsIcon" parent="HBox1" instance=ExtResource( 7 )]
+margin_left = 281.0
+margin_right = 303.0
+rect_min_size = Vector2( 22, 0 )
+texture = SubResource( 14 )
 
 [node name="PauseBtn" parent="HBox1" instance=ExtResource( 3 )]
 margin_left = 304.0
