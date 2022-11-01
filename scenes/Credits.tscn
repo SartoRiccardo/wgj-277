@@ -2,7 +2,7 @@
 
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://resources/ui/font_title.tres" type="DynamicFont" id=2]
-[ext_resource path="res://ui/HoverableButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/components/HoverableButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Credits.gd" type="Script" id=4]
 
 [node name="Credits" type="CanvasLayer"]

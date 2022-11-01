@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "ScalableTexture",
 "language": "GDScript",
-"path": "res://ui/ScalableTexture.gd"
+"path": "res://ui/components/ScalableTexture.gd"
 }, {
 "base": "Timer",
 "class": "SettableTimer",

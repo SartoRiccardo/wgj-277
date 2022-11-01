@@ -1,4 +1,4 @@
-extends "res://ui/HoverableButton.gd"
+extends "res://ui/components/HoverableButton.gd"
 
 var light_offset := Vector2(21, 0)
 var dark_offset := Vector2(11, 0)

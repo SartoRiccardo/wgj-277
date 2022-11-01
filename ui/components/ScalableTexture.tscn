@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ui/ScalableTexture.gd" type="Script" id=1]
+[ext_resource path="res://ui/components/ScalableTexture.gd" type="Script" id=1]
 
-[node name="TimerIcon" type="TextureRect"]
+[node name="ScalableTexture" type="TextureRect"]
 margin_right = 18.6154
 margin_bottom = 22.0
 rect_min_size = Vector2( 18.6154, 0 )
