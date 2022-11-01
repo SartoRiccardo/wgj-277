@@ -20,3 +20,9 @@ func change_scene_to(node: Node, free_previous=true) -> Node:
 
 func change_scene(scene: PackedScene, free_previous=true) -> Node:
 	return change_scene_to(scene.instance(), free_previous)
+
+func set_paused(pause : bool) -> void:
+	if pause == get_tree().is_paused():
+		return
+	get_tree().set_pause(pause)
+	EventBus.emit_signal("game_paused" if pause else "game_unpaused")

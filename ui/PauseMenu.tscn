@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/ui/font_title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/HoverableButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/PauseMenu.gd" type="Script" id=3]
+[ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=4]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Margin/MenuContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Margin/MenuContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "popup"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Margin/MenuContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25 ),
+"transitions": PoolRealArray( 0.5, 0.75, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Margin/MenuContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.27451 )
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuContainer" type="PanelContainer" parent="Margin"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 101.0
+margin_top = 38.0
+margin_right = 235.0
+margin_bottom = 151.0
+rect_pivot_offset = Vector2( 67, 56.5 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Margin/MenuContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 127.0
+margin_bottom = 106.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Margin/MenuContainer/VBox"]
+margin_right = 120.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 1 )
+text = "Pause"
+align = 1
+
+[node name="Resume" parent="Margin/MenuContainer/VBox" instance=ExtResource( 2 )]
+margin_top = 25.0
+margin_right = 120.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 120, 0 )
+text = "RESUME"
+
+[node name="Restart" parent="Margin/MenuContainer/VBox" instance=ExtResource( 2 )]
+margin_top = 51.0
+margin_right = 120.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 120, 0 )
+text = "RESTART"
+
+[node name="Options" parent="Margin/MenuContainer/VBox" instance=ExtResource( 2 )]
+visible = false
+margin_top = 73.0
+margin_right = 120.0
+margin_bottom = 93.0
+rect_min_size = Vector2( 120, 0 )
+text = "OPTIONS"
+
+[node name="Menu" parent="Margin/MenuContainer/VBox" instance=ExtResource( 2 )]
+margin_top = 77.0
+margin_right = 120.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 120, 0 )
+text = "MENU"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/popup = SubResource( 1 )

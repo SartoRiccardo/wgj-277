@@ -22,30 +22,35 @@ margin = Rect2( 0, 1, 1, 2 )
 atlas = ExtResource( 1 )
 region = Rect2( 11, 0, 10, 11 )
 
-[node name="GameUI" type="MarginContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 5 )
+[node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 4 )
 
-[node name="HBox1" type="HBoxContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 331.0
+margin_bottom = 185.0
+theme = ExtResource( 5 )
+
+[node name="HBox1" type="HBoxContainer" parent="Margin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 321.0
 margin_bottom = 27.0
 size_flags_vertical = 0
 custom_constants/separation = 1
 
-[node name="TimerIcon" parent="HBox1" instance=ExtResource( 7 )]
+[node name="TimerIcon" parent="Margin/HBox1" instance=ExtResource( 7 )]
+rect_min_size = Vector2( 18.6154, 0 )
 texture = SubResource( 13 )
 
-[node name="VSeparator" type="VSeparator" parent="HBox1"]
+[node name="VSeparator" type="VSeparator" parent="Margin/HBox1"]
 margin_left = 19.0
 margin_right = 23.0
 margin_bottom = 22.0
 custom_styles/separator = SubResource( 15 )
 
-[node name="TimeLbl" type="Label" parent="HBox1"]
+[node name="TimeLbl" type="Label" parent="Margin/HBox1"]
 margin_left = 24.0
 margin_right = 36.0
 margin_bottom = 22.0
@@ -53,9 +58,9 @@ size_flags_vertical = 5
 text = "45"
 valign = 1
 
-[node name="PointsLbl" type="Label" parent="HBox1"]
+[node name="PointsLbl" type="Label" parent="Margin/HBox1"]
 margin_left = 37.0
-margin_right = 280.0
+margin_right = 272.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -63,17 +68,19 @@ text = "1000"
 align = 2
 valign = 1
 
-[node name="PointsIcon" parent="HBox1" instance=ExtResource( 7 )]
-margin_left = 281.0
-margin_right = 303.0
-rect_min_size = Vector2( 22, 0 )
+[node name="PointsIcon" parent="Margin/HBox1" instance=ExtResource( 7 )]
+margin_left = 273.0
+margin_right = 293.308
+rect_min_size = Vector2( 20.3077, 0 )
 texture = SubResource( 14 )
 
-[node name="PauseBtn" parent="HBox1" instance=ExtResource( 3 )]
-margin_left = 304.0
-margin_right = 326.0
+[node name="PauseBtn" parent="Margin/HBox1" instance=ExtResource( 3 )]
+margin_left = 294.0
+margin_right = 316.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 22, 0 )
+focus_mode = 0
+enabled_focus_mode = 0
 icon = SubResource( 11 )
 icon_align = 1
 script = ExtResource( 6 )

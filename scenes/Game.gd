@@ -8,7 +8,7 @@ var uprooted := 0
 var watered := 0
 
 func _ready() -> void:
-	$CanvasLayer/GameUI.set_points(points)
+	$GameUI.set_points(points)
 	$GameTime.connect("timeout", self, "_on_game_end")
 	EventBus.connect("harvest", self, "_on_plant_harvested")
 	EventBus.connect("watered", self, "_on_plant_watered")
@@ -17,7 +17,9 @@ func _ready() -> void:
 		$TileMap.tile_set.tile_set_modulate(1, Color.transparent)
 
 func _process(delta):
-	$CanvasLayer/GameUI.set_time_left(ceil($GameTime.time_left))
+	$GameUI.set_time_left(ceil($GameTime.time_left))
+	if Input.is_action_just_pressed("ui_cancel"):
+		$GameUI.open_pause_menu()
 
 func _on_game_end() -> void:
 	$PlantSpawner.stop()
@@ -28,7 +30,7 @@ func _on_game_end() -> void:
 	game_over.harvested = harvested
 	game_over.uprooted = uprooted
 	game_over.watered = watered
-	$CanvasLayer.add_child(game_over)
+	$GameUI.add_child(game_over)
 
 func _on_plant_harvested(is_uprooted : bool, plant_points : int) -> void:
 	if not is_uprooted:
@@ -36,7 +38,7 @@ func _on_plant_harvested(is_uprooted : bool, plant_points : int) -> void:
 		points += plant_points
 	else:
 		uprooted += 1
-	$CanvasLayer/GameUI.set_points(points)
+	$GameUI.set_points(points)
 
 func _on_plant_watered() -> void:
 	watered += 1

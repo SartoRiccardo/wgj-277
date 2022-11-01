@@ -23,6 +23,7 @@ func _ready() -> void:
 		if state.has_method("init"):
 			state.init(self)
 	EventBus.connect("game_end", self, "_on_game_ended")
+	EventBus.connect("game_unpaused", self, "_on_game_unpaused")
 	_change_state("idle")
 
 func _process(delta : float) -> void:
@@ -42,14 +43,20 @@ func _change_state(state : String):
 	state_node.enter()
 	current_state = state_node
 
-func _register_inputs() -> void:
+func _register_inputs(reset=false) -> void:
 	var events = ["move_left", "move_right"]
 	
+	if reset:
+		inputs = []
 	for evt in events:
-		if Input.is_action_just_pressed(evt):
-			inputs.append(evt)
-		elif Input.is_action_just_released(evt):
-			inputs.erase(evt)
+		if reset:
+			if Input.is_action_pressed(evt):
+				inputs.append(evt)
+		else:
+			if Input.is_action_just_pressed(evt):
+				inputs.append(evt)
+			elif Input.is_action_just_released(evt):
+				inputs.erase(evt)
 
 func _update_movement_speed(delta : float) -> void:
 	mov_vector = Vector2.ZERO
@@ -95,3 +102,6 @@ func _get_nearest_plant() -> Plant:
 func _on_game_ended() -> void:
 	controllable = false
 	mov_vector = Vector2.ZERO
+
+func _on_game_unpaused() -> void:
+	_register_inputs(true)

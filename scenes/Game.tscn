@@ -101,6 +101,4 @@ position = Vector2( 279, 0 )
 [node name="SpawnBoxCorner2" type="Position2D" parent="PlantSpawner"]
 position = Vector2( -293, 0 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="GameUI" parent="." instance=ExtResource( 5 )]

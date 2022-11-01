@@ -2,6 +2,7 @@ extends "res://entities/alien/BaseState.gd"
 
 func _ready() -> void:
 	EventBus.connect("game_end", self, "_on_game_end")
+	EventBus.connect("game_unpaused", self, "_on_game_unpaused")
 
 # Override
 func enter() -> void:
@@ -28,3 +29,7 @@ func exit() -> void:
 
 func _on_game_end() -> void:
 	player.call_deferred("_change_state", "idle")
+
+func _on_game_unpaused() -> void:
+	if not Input.is_action_pressed("interact"):
+		player.call_deferred("_change_state", "idle")

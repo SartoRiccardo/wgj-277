@@ -7,7 +7,7 @@ func _ready() -> void:
 	added = true
 
 func update_time_left(new_time_left : float) -> void:
-	if not added:
+	if not (added and is_instance_valid(self)):
 		return
 	var cur_wait_time := wait_time
 	start(new_time_left)
