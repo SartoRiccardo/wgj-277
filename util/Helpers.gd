@@ -13,3 +13,10 @@ func update_timer_proportional(timer : SettableTimer, wait_time : float) -> void
 	var progress : float = timer.get_progress()
 	timer.set_wait_time(wait_time)
 	timer.update_time_left(wait_time*(1.0-progress))
+
+func remove_all_children(parent : Node) -> void:
+	for child in parent.get_children():
+		parent.remove_child(child)
+
+func main_node():
+	return get_node_or_null("/root/Main")

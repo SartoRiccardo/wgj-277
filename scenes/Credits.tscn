@@ -1,0 +1,159 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
+[ext_resource path="res://resources/ui/font_title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/HoverableButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Credits.gd" type="Script" id=4]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Margin1" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+
+[node name="VBox1" type="VBoxContainer" parent="Margin1"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 316.0
+margin_bottom = 185.0
+
+[node name="Label" type="Label" parent="Margin1/VBox1"]
+margin_right = 296.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 2 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="Panel1" type="PanelContainer" parent="Margin1/VBox1"]
+margin_top = 25.0
+margin_right = 296.0
+margin_bottom = 154.0
+size_flags_vertical = 3
+
+[node name="Scroll1" type="ScrollContainer" parent="Margin1/VBox1/Panel1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 289.0
+margin_bottom = 122.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/Panel1/Scroll1"]
+margin_right = 270.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+custom_constants/margin_top = 0
+custom_constants/margin_bottom = 0
+
+[node name="CreditsContainer" type="VBoxContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1"]
+margin_left = 5.0
+margin_right = 265.0
+margin_bottom = 264.0
+
+[node name="Grid2" type="HBoxContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
+margin_right = 260.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid2"]
+margin_right = 125.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.21
+text = "Coding"
+
+[node name="Label2" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid2"]
+margin_left = 129.0
+margin_right = 259.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Sarto (opengameart.org)"
+align = 2
+
+[node name="Label" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 32.0
+text = "Assets"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
+margin_top = 36.0
+margin_right = 260.0
+margin_bottom = 40.0
+
+[node name="Grid1" type="GridContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
+margin_top = 44.0
+margin_right = 260.0
+margin_bottom = 264.0
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Label" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_right = 32.0
+margin_bottom = 14.0
+text = "Plants"
+
+[node name="Label2" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_left = 36.0
+margin_right = 260.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "pistachio (opengameart.org)"
+align = 2
+autowrap = true
+
+[node name="Label3" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_top = 18.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "Alien"
+
+[node name="Label4" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_left = 36.0
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+text = "other guy (opengameart.org)"
+align = 2
+
+[node name="Label5" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_top = 121.0
+margin_right = 32.0
+margin_bottom = 135.0
+text = "abcd"
+
+[node name="Label6" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 260.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+text = "pistachio (opengameart.org)
+
+
+
+
+
+
+
+
+
+abce"
+align = 2
+
+[node name="Menu" parent="Margin1/VBox1" instance=ExtResource( 3 )]
+margin_left = 73.0
+margin_top = 158.0
+margin_right = 223.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+text = "BACK"

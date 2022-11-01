@@ -1,0 +1,64 @@
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://resources/ui/font_default.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 31, 11, 11 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 11, 11 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 5.0
+margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 22, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = SubResource( 5 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 9, 22, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = SubResource( 7 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 13, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = SubResource( 9 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[resource]
+Button/fonts/font = ExtResource( 1 )
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 6 )
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = SubResource( 10 )
+Label/fonts/font = ExtResource( 1 )
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
