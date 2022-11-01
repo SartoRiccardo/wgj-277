@@ -52,6 +52,10 @@ func grow() -> void:
 	if sprite_atlas_offset != $Sprite.texture.region.position.x and \
 			sprite_atlas_offset < $Sprite.texture.atlas.get_width():
 		$AnimationBehavior.play("grow")
+	
+	if times_grown >= data.growth_stages-1:
+		$InteractIcon.set_icon("harvest")
+		$InteractIcon.popup()
 
 func update_sprite() -> void:
 	$Sprite.texture.region.position.x = _get_sprite_offset()
@@ -111,8 +115,9 @@ func _on_grow() -> void:
 func _on_wilted() -> void:
 	wilted = true
 	$TimerGrow.set_paused(true)
-	$AnimationBehavior.play("wilt")
 	$TimerDespawn.start()
+	$InteractIcon.retract()
+	$AnimationBehavior.play("wilt")
 
 func _on_wilt_despawn() -> void:
 	$AnimationState.play("death")

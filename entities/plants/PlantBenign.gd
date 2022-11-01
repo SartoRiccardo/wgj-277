@@ -6,6 +6,7 @@ func _ready() -> void:
 		return
 	
 	$TimerWilt.start(modifiers.wilt_time())
+	$InteractIcon.popup()
 
 # Public methods
 
@@ -20,9 +21,15 @@ func is_harvestable() -> bool:
 # Event handlers
 
 # Override
+func _on_grow() -> void:
+	._on_grow()
+	$InteractIcon.popup()
+
+# Override
 func _on_player_interaction() -> void:
 	if is_harvestable():
 		harvest()
 	else:  # Watered
+		$InteractIcon.retract()
 		$TimerWilt.stop()
 		$TimerGrow.start(modifiers.grow_time())

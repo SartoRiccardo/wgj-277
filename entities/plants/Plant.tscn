@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://entities/plants/Plant.gd" type="Script" id=1]
 [ext_resource path="res://util/SettableTimer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/plants/ModifierManager.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui.png" type="Texture" id=4]
+[ext_resource path="res://entities/plants/InteractIcon.gd" type="Script" id=5]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -57,6 +59,70 @@ atlas = SubResource( 13 )
 region = Rect2( 123, 0, 41, 54 )
 
 [sub_resource type="CircleShape2D" id=11]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 31, 0, 7, 9 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 38, 0, 14, 11 )
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Texture:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "hover"
+length = 3.75
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -6.0, 0.0 ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "RESET"
@@ -287,6 +353,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("InteractIcon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "retract"
+} ]
+}
 
 [sub_resource type="Animation" id=16]
 resource_name = "despawn"
@@ -353,6 +433,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 0.5, 2, 1 ),
 "update": 0,
 "values": [ 1.0, 2.0, 0.0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("InteractIcon")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "retract"
+} ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -425,6 +519,20 @@ one_shot = true
 [node name="TimerDespawn" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
+
+[node name="InteractIcon" type="Node2D" parent="."]
+scale = Vector2( 1e-05, 1e-05 )
+script = ExtResource( 5 )
+icon_water = SubResource( 19 )
+icon_harvest = SubResource( 20 )
+
+[node name="Texture" type="Sprite" parent="InteractIcon"]
+texture = SubResource( 19 )
+
+[node name="AnimationTexture" type="AnimationPlayer" parent="InteractIcon"]
+autoplay = "hover"
+anims/RESET = SubResource( 22 )
+anims/hover = SubResource( 21 )
 
 [node name="AnimationBehavior" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
