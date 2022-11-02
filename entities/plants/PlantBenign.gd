@@ -1,6 +1,8 @@
 extends "res://entities/plants/Plant.gd"
 class_name PlantBenign
 
+signal watered
+
 func _ready() -> void:
 	if data == null:
 		return
@@ -31,6 +33,7 @@ func _on_player_interaction() -> void:
 		harvest()
 	else:  # Watered
 		EventBus.emit_signal("watered")
+		emit_signal("watered")
 		$InteractIcon.retract()
 		$TimerWilt.stop()
 		$TimerGrow.start(modifiers.grow_time())

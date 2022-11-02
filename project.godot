@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "SpawnWeight",
 "language": "GDScript",
 "path": "res://resources/plants/SpawnWeight.gd"
+}, {
+"base": "Control",
+"class": "TutorialUI",
+"language": "GDScript",
+"path": "res://ui/TutorialUI.gd"
 } ]
 _global_script_class_icons={
 "Alien": "",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "PlantResource": "",
 "ScalableTexture": "",
 "SettableTimer": "",
-"SpawnWeight": ""
+"SpawnWeight": "",
+"TutorialUI": ""
 }
 
 [application]

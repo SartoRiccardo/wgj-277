@@ -3,8 +3,10 @@ class_name Plant
 
 signal grow(plant)
 signal harvest(plant)
+signal wilted
 
 export (Resource) var data
+export (bool) var can_wilt := true
 
 onready var modifiers = $ModifierManager
 
@@ -113,11 +115,13 @@ func _on_grow() -> void:
 		$TimerWilt.start(modifiers.wilt_time())
 
 func _on_wilted() -> void:
-	wilted = true
-	$TimerGrow.set_paused(true)
-	$TimerDespawn.start()
-	$InteractIcon.retract()
-	$AnimationBehavior.play("wilt")
+	if can_wilt:
+		wilted = true
+		$TimerGrow.set_paused(true)
+		$TimerDespawn.start()
+		emit_signal("wilted")
+		$InteractIcon.retract()
+		$AnimationBehavior.play("wilt")
 
 func _on_wilt_despawn() -> void:
 	$AnimationState.play("death")

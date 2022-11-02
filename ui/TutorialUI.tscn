@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/components/HoverableButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/TutorialUI.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "wobble"
+length = 0.125
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_scale:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.025, 0.075, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.05, 0.95, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Panel:rect_scale:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.1, 0.95, 1.0 ]
+}
+
+[node name="TutorialUI" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_top = 30
+script = ExtResource( 4 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+margin_left = 43.0
+margin_top = 30.0
+margin_right = 293.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 250, 0 )
+rect_pivot_offset = Vector2( 125, 29.5 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 52.0
+
+[node name="TutorialText" type="RichTextLabel" parent="Panel/VBox"]
+margin_right = 236.0
+margin_bottom = 45.0
+bbcode_enabled = true
+bbcode_text = "Welcome to [game]! Begin by watering plants that have the [img]res://resources/textures/texture_water.tres[/img] icon!
+(Hold SPACE near them)"
+text = "Welcome to [game]! Begin by watering plants that have the  icon!
+(Hold SPACE near them)"
+fit_content_height = true
+scroll_active = false
+
+[node name="BtnPlay" parent="Panel/VBox" instance=ExtResource( 3 )]
+visible = false
+margin_left = 58.0
+margin_top = 49.0
+margin_right = 178.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 4
+text = "PLAY"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/wobble = SubResource( 2 )

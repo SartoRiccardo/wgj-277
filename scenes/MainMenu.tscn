@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/components/HoverableButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/ui/font_title.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://resources/ui/font_default_small.tres" type="DynamicFont" id=5]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 4 )
@@ -21,9 +22,9 @@ margin_bottom = 185.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Root/VBox1"]
-margin_top = 53.0
+margin_top = 40.0
 margin_right = 326.0
-margin_bottom = 74.0
+margin_bottom = 61.0
 custom_fonts/font = ExtResource( 3 )
 text = "Untitled Alien Vegetation game"
 align = 1
@@ -31,12 +32,21 @@ valign = 1
 
 [node name="BtnPlay" parent="Root/VBox1" instance=ExtResource( 2 )]
 margin_left = 88.0
-margin_top = 78.0
+margin_top = 65.0
 margin_right = 238.0
-margin_bottom = 100.0
+margin_bottom = 87.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 4
 text = "PLAY"
+
+[node name="BtnTutorial" parent="Root/VBox1" instance=ExtResource( 2 )]
+margin_left = 88.0
+margin_top = 91.0
+margin_right = 238.0
+margin_bottom = 113.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 4
+text = "TUTORIAL"
 
 [node name="BtnOptions" parent="Root/VBox1" instance=ExtResource( 2 )]
 visible = false
@@ -50,9 +60,9 @@ text = "OPTIONS"
 
 [node name="BtnCredits" parent="Root/VBox1" instance=ExtResource( 2 )]
 margin_left = 88.0
-margin_top = 104.0
+margin_top = 117.0
 margin_right = 238.0
-margin_bottom = 126.0
+margin_bottom = 139.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 4
 text = "CREDITS"
@@ -66,3 +76,13 @@ margin_bottom = 139.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 4
 text = "QUIT"
+
+[node name="YoursTruly" type="Label" parent="Root"]
+margin_left = 5.0
+margin_top = 175.0
+margin_right = 331.0
+margin_bottom = 185.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 5 )
+text = "sarto.itch.io"

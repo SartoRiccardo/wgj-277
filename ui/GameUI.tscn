@@ -41,6 +41,7 @@ size_flags_vertical = 0
 custom_constants/separation = 1
 
 [node name="TimerIcon" parent="Margin/HBox1" instance=ExtResource( 7 )]
+rect_min_size = Vector2( 18.6154, 0 )
 texture = SubResource( 13 )
 
 [node name="VSeparator" type="VSeparator" parent="Margin/HBox1"]
