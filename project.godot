@@ -89,6 +89,7 @@ config/icon="res://icon.png"
 Console="*res://util/Console.tscn"
 Helpers="*res://util/Helpers.gd"
 EventBus="*res://util/EventBus.gd"
+ParticleLoader="*res://util/ParticleLoader.tscn"
 
 [debug]
 

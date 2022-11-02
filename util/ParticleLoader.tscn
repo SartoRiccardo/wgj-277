@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://util/ParticleLoader.gd" type="Script" id=1]
+[ext_resource path="res://resources/shaders/particles_plant_death.tres" type="Material" id=2]
+[ext_resource path="res://resources/particles/water_sparkle.tres" type="Material" id=3]
+
+[node name="ParticleLoader" type="Node"]
+script = ExtResource( 1 )
+particles = [ ExtResource( 3 ) ]
+shaders = [ ExtResource( 2 ) ]
