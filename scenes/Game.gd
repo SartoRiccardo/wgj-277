@@ -24,7 +24,9 @@ func _process(delta):
 func _on_game_end() -> void:
 	$PlantSpawner.stop()
 	EventBus.emit_signal("game_end")
+	$AudioStreamPlayer.play()
 	yield(get_tree().create_timer(1.0), "timeout")
+	
 	var game_over : Node = game_over_ui.instance()
 	game_over.points = points
 	game_over.harvested = harvested
