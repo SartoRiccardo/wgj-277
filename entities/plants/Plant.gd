@@ -9,6 +9,7 @@ export (Resource) var data
 export (bool) var can_wilt := true
 
 onready var modifiers = $ModifierManager
+onready var scn_harvest_result = load("res://ui/HarvestResult.tscn")
 
 var times_grown := 0
 var wilted := false
@@ -90,8 +91,15 @@ func set_glow(glow : bool) -> void:
 		$Sprite.material.set_shader_param("intensity", 0.0)
 
 func harvest() -> void:
+	var uprooted : bool = times_grown < data.growth_stages-1
+	var particles_root := Helpers.get_first_of_group("particle_root")
+	var harvest_result : Node = scn_harvest_result.instance()
+	harvest_result.position = position
+	harvest_result.init(uprooted, data.points)
+	particles_root.add_child(harvest_result)
+	
 	emit_signal("harvest", self)
-	EventBus.emit_signal("harvest", times_grown < data.growth_stages-1, data.points)
+	EventBus.emit_signal("harvest", uprooted, data.points)
 	_despawn()
 
 func die() -> void:
