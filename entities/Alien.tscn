@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/Alien.gd" type="Script" id=1]
 [ext_resource path="res://assets/alien.png" type="Texture" id=2]
 [ext_resource path="res://entities/alien/StateIdle.gd" type="Script" id=3]
 [ext_resource path="res://entities/alien/StateInteracting.gd" type="Script" id=4]
+[ext_resource path="res://assets/particles/particle_water.png" type="Texture" id=5]
+[ext_resource path="res://resources/shaders/particles_water_alien.tres" type="Material" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -60,6 +62,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CanvasItemMaterial" id=12]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 5 )
 
@@ -74,6 +82,15 @@ position = Vector2( 0, -17 )
 frames = SubResource( 10 )
 animation = "water"
 playing = true
+
+[node name="Water" type="Particles2D" parent="."]
+material = SubResource( 12 )
+position = Vector2( 11, -10 )
+emitting = false
+amount = 10
+local_coords = false
+process_material = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -5 )

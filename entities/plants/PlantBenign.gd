@@ -14,7 +14,8 @@ func _ready() -> void:
 
 # Override
 func is_waterable() -> bool:
-	return !despawning and !wilted and $TimerGrow.is_stopped()
+	return !despawning and !wilted and $TimerGrow.is_stopped() and \
+		not is_harvestable()
 
 # Override
 func is_harvestable() -> bool:
