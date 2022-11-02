@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://resources/textures/texture_point.tres" type="Texture" id=2]
 [ext_resource path="res://ui/components/ScalableTexture.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/HarvestResult.gd" type="Script" id=4]
+[ext_resource path="res://sound/harvest_uproot.wav" type="AudioStream" id=5]
+[ext_resource path="res://sound/harvest_mature.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -129,3 +131,11 @@ text = "+100"
 autoplay = "appear"
 anims/RESET = SubResource( 1 )
 anims/appear = SubResource( 2 )
+
+[node name="HarvestMature" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="HarvestUproot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"

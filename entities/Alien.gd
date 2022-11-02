@@ -24,6 +24,7 @@ func _ready() -> void:
 			state.init(self)
 	EventBus.connect("game_end", self, "_on_game_ended")
 	EventBus.connect("game_unpaused", self, "_on_game_unpaused")
+	$AnimatedSprite.connect("frame_changed", self, "_on_animation_frame_changed")
 	_change_state("idle")
 
 func _process(delta : float) -> void:
@@ -105,3 +106,8 @@ func _on_game_ended() -> void:
 
 func _on_game_unpaused() -> void:
 	_register_inputs(true)
+
+func _on_animation_frame_changed() -> void:
+	if $AnimatedSprite.animation == "walk" and \
+			$AnimatedSprite.frame in [2, 5]:
+		$SFXWalk.play()

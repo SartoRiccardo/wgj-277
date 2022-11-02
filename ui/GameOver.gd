@@ -31,12 +31,23 @@ func _process(_d : float) -> void:
 func animate_stats() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "ui_points", points, points*0.001)
+	tween.parallel().tween_callback($Points, "play")
+	tween.tween_callback($Points, "stop")
+	
 	tween.tween_property(self, "ui_harvested", harvested, harvested*0.01) \
 		.set_delay(0.5)
+	tween.parallel().tween_callback($Points, "play").set_delay(0.5)
+	tween.tween_callback($Points, "stop")
+	
 	tween.tween_property(self, "ui_uprooted", uprooted, uprooted*0.01) \
 		.set_delay(0.5)
-	tween.tween_property(self, "ui_watered", watered, watered*0.01) \
+	tween.parallel().tween_callback($Points, "play").set_delay(0.5)
+	tween.tween_callback($Points, "stop")
+	
+	tween.tween_property(self, "ui_watered", watered, watered*0.005) \
 		.set_delay(0.5)
+	tween.parallel().tween_callback($Points, "play").set_delay(0.5)
+	tween.tween_callback($Points, "stop")
 
 func _on_menu_pressed() -> void:
 	var main_node = Helpers.main_node()

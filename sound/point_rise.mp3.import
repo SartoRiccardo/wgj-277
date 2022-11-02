@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/point_rise.mp3-69c0939c7c984d8f8f1aeaf57631e9c4.mp3str"
+
+[deps]
+
+source_file="res://sound/point_rise.mp3"
+dest_files=[ "res://.import/point_rise.mp3-69c0939c7c984d8f8f1aeaf57631e9c4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

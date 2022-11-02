@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entities/Alien.gd" type="Script" id=1]
 [ext_resource path="res://assets/alien.png" type="Texture" id=2]
@@ -6,6 +6,13 @@
 [ext_resource path="res://entities/alien/StateInteracting.gd" type="Script" id=4]
 [ext_resource path="res://assets/particles/particle_water.png" type="Texture" id=5]
 [ext_resource path="res://resources/shaders/particles_water_alien.tres" type="Material" id=6]
+[ext_resource path="res://sound/alien/water_plant.mp3" type="AudioStream" id=7]
+[ext_resource path="res://sound/alien/footstep1.mp3" type="AudioStream" id=8]
+[ext_resource path="res://sound/alien/footstep0.mp3" type="AudioStream" id=9]
+[ext_resource path="res://sound/alien/footstep2.mp3" type="AudioStream" id=10]
+[ext_resource path="res://util/RandomSoundPlayer.gd" type="Script" id=11]
+[ext_resource path="res://sound/alien/footstep3.mp3" type="AudioStream" id=12]
+[ext_resource path="res://sound/alien/harvest.mp3" type="AudioStream" id=13]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -105,6 +112,9 @@ monitorable = false
 position = Vector2( 0, -10 )
 shape = SubResource( 11 )
 
+[node name="Listener2D" type="Listener2D" parent="."]
+current = true
+
 [node name="States" type="Node" parent="."]
 
 [node name="Idle" type="Node" parent="States"]
@@ -112,3 +122,30 @@ script = ExtResource( 3 )
 
 [node name="Interacting" type="Node" parent="States"]
 script = ExtResource( 4 )
+
+[node name="WaterPlant" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="HarvestPlant" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+bus = "SFX"
+
+[node name="SFXWalk" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFXWalk"]
+stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="SFXWalk"]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="SFXWalk"]
+stream = ExtResource( 10 )
+bus = "SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="SFXWalk"]
+stream = ExtResource( 12 )
+bus = "SFX"

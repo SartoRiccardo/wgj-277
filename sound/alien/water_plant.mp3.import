@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/water_plant.mp3-d40c3d0461e3c85949bbb6b0ba0a0a5a.mp3str"
+
+[deps]
+
+source_file="res://sound/alien/water_plant.mp3"
+dest_files=[ "res://.import/water_plant.mp3-d40c3d0461e3c85949bbb6b0ba0a0a5a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

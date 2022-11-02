@@ -22,7 +22,9 @@ func enter() -> void:
 			)
 			water.position.x = abs(water.position.x) * (-1 if is_flipped_h else 1)
 			water.set_emitting(true)
+			player.get_node("WaterPlant").play()
 		else:
+			player.get_node("HarvestPlant").play()
 #			anim_sprite.set_animation("harvest")
 			pass
 
@@ -38,6 +40,8 @@ func exit() -> void:
 		player.interact_target.set_interact(false)
 	player.interact_target = null
 	player.get_node("Water").set_emitting(false)
+	player.get_node("WaterPlant").stop()
+	player.get_node("HarvestPlant").stop()
 
 func _on_game_end() -> void:
 	player.call_deferred("_change_state", "idle")

@@ -113,6 +113,8 @@ func _get_sprite_offset() -> int:
 
 func _despawn(killed=false) -> void:
 	despawning = true
+	if killed:
+		$SFX2D.volume_db = -80
 	$AnimationState.play("death" if killed else "despawn")
 
 # Event handlers

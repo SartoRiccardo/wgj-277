@@ -1,7 +1,16 @@
 tool
 extends Node2D
 
-func init(uprooted: bool, points : int):
+var uprooted := false
+
+func _ready() -> void:
+	if uprooted:
+		$HarvestUproot.play()
+	else:
+		$HarvestMature.play()
+
+func init(p_uprooted: bool, points : int) -> void:
+	uprooted = p_uprooted
 	if uprooted:
 		$HBox/PointIcon.hide()
 		$HBox/Points.set_text("Uprooted!")

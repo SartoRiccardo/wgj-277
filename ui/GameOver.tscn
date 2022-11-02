@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/components/HoverableButton.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/components/ScalableTexture.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resources/ui/font_default_big.tres" type="DynamicFont" id=6]
 [ext_resource path="res://ui/GameOver.gd" type="Script" id=7]
+[ext_resource path="res://sound/point_rise.mp3" type="AudioStream" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -260,3 +261,7 @@ text = "RETRY"
 autoplay = "appear"
 anims/RESET = SubResource( 5 )
 anims/appear = SubResource( 4 )
+
+[node name="Points" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"

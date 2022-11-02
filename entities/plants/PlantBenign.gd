@@ -40,3 +40,4 @@ func _on_player_interaction() -> void:
 		$TimerGrow.start(modifiers.grow_time())
 		$Water.preprocess = 0.0
 		$Water.set_emitting(true)
+		$Watered.play()
