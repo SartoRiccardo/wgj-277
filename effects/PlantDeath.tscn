@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://effects/PlantDeath.gd" type="Script" id=1]
 [ext_resource path="res://assets/particles/particle_death.png" type="Texture" id=2]
@@ -10,17 +10,13 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0238631, 0, 0, Vector2( 0.0285714, 0.354545 ), -2.625, -2.625, 0, 0, Vector2( 0.404762, 0 ), -0.0154818, -0.0154818, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
 [node name="PlantDeath" type="Particles2D"]
 material = SubResource( 4 )
 emitting = false
 amount = 200
-lifetime = 3.0
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = ExtResource( 3 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-speed_multiplier = SubResource( 3 )

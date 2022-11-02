@@ -37,10 +37,9 @@ uniform vec4 color_value : hint_color;
 uniform int trail_divisor;
 uniform vec3 gravity;
 
-uniform float velocity_multi : hint_range(0.0, 1.0);
 uniform float stop_slowing_at : hint_range(0.0, 1.0);
 uniform float start_drift_at : hint_range(0.0, 1.0);
-uniform float elapsed;
+uniform float velocity_multi_end : hint_range(0.0, 1.0);
 uniform vec2 target;
 uniform float accel_to_target;
 
@@ -66,6 +65,11 @@ uint hash(uint x) {
 	x = ((x >> uint(16)) ^ x) * uint(73244475);
 	x = (x >> uint(16)) ^ x;
 	return x;
+}
+
+float get_velocity_multi(float progression) {
+	if(progression >= velocity_multi_end) return 0.0;
+	return (velocity_multi_end-progression)/velocity_multi_end / 3.0;
 }
 
 void vertex() {
@@ -189,15 +193,14 @@ void vertex() {
 	if (CUSTOM.y > CUSTOM.w) {		ACTIVE = false;
 	}
 	
-	float elapsed_percent = elapsed/LIFETIME;
-	if(elapsed_percent < stop_slowing_at) {
+	if(CUSTOM.y < stop_slowing_at) {
 		uint alt_restart_seed = hash(base_number + uint(301184) + RANDOM_SEED);
 		rand_from_seed_m1_p1(alt_restart_seed);
 		float particle_initial_velocity = initial_linear_velocity * mix(1.0, rand_from_seed(alt_restart_seed), initial_linear_velocity_random);
-		VELOCITY = particle_initial_velocity * normalize(VELOCITY) * velocity_multi;
+		VELOCITY = particle_initial_velocity * normalize(VELOCITY) * get_velocity_multi(CUSTOM.y);
 	}
-	
-	if(elapsed_percent >= start_drift_at) {
+
+	if(CUSTOM.y >= start_drift_at) {
 		if(distance(TRANSFORM[3].xy, target) <= 15.0) {
 			ACTIVE = false;
 		}
@@ -207,9 +210,7 @@ void vertex() {
 			VELOCITY.xy += target_direction * DELTA * accel_to_target;
 		}
 	}
-}
-
-"
+}"
 
 [resource]
 resource_local_to_scene = true
@@ -245,9 +246,8 @@ shader_param/lifetime_randomness = 0.0
 shader_param/color_value = Color( 1, 1, 1, 1 )
 shader_param/trail_divisor = 1
 shader_param/gravity = Vector3( 0, -1e-06, 0 )
-shader_param/velocity_multi = 0.00965827
-shader_param/stop_slowing_at = 0.3
-shader_param/start_drift_at = 0.3
-shader_param/elapsed = 0.935501
+shader_param/stop_slowing_at = 0.5
+shader_param/start_drift_at = 0.5
+shader_param/velocity_multi_end = 0.5
 shader_param/target = Vector2( 200, 200 )
-shader_param/accel_to_target = 400.0
+shader_param/accel_to_target = 700.0
