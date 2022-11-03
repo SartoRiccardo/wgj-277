@@ -14,7 +14,7 @@ func _ready() -> void:
 	EventBus.connect("watered", self, "_on_plant_watered")
 	
 	if not Engine.editor_hint:
-		$TileMap.tile_set.tile_set_modulate(1, Color.transparent)
+		$Barriers.tile_set.tile_set_modulate(1, Color.transparent)
 
 func _process(delta):
 	$GameUI.set_time_left(ceil($GameTime.time_left))
