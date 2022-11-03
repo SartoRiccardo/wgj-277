@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=2]
+[gd_resource type="Theme" load_steps=19 format=2]
 
 [ext_resource path="res://resources/ui/font_default.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui.png" type="Texture" id=2]
@@ -39,12 +39,58 @@ margin_right = 4.0
 margin_top = 4.0
 margin_bottom = 4.0
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 13, 9, 9 )
 
-[sub_resource type="StyleBoxTexture" id=10]
-texture = SubResource( 9 )
+[sub_resource type="StyleBoxTexture" id=16]
+texture = SubResource( 15 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 17, 0, 4, 3 )
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = SubResource( 21 )
+region_rect = Rect2( 0, 0, 4, 1 )
+margin_left = 3.0
+margin_right = 3.0
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 18, 13, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = SubResource( 11 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 9, 13, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=20]
+texture = SubResource( 19 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 13, 9, 9 )
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = SubResource( 17 )
 region_rect = Rect2( 0, 0, 9, 9 )
 margin_left = 4.0
 margin_right = 4.0
@@ -57,10 +103,17 @@ Button/fonts/font = ExtResource( 1 )
 Button/styles/focus = SubResource( 4 )
 Button/styles/hover = SubResource( 6 )
 Button/styles/normal = SubResource( 8 )
-Button/styles/pressed = SubResource( 10 )
+Button/styles/pressed = SubResource( 16 )
+HSeparator/styles/separator = SubResource( 22 )
 Label/fonts/font = ExtResource( 1 )
 MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
+PanelContainer/styles/panel = SubResource( 12 )
 RichTextLabel/fonts/normal_font = ExtResource( 1 )
+VScrollBar/styles/grabber = SubResource( 8 )
+VScrollBar/styles/grabber_highlight = SubResource( 6 )
+VScrollBar/styles/grabber_pressed = SubResource( 20 )
+VScrollBar/styles/scroll = SubResource( 18 )
+VScrollBar/styles/scroll_focus = SubResource( 4 )

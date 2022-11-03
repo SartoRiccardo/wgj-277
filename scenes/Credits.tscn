@@ -36,40 +36,41 @@ margin_bottom = 154.0
 size_flags_vertical = 3
 
 [node name="Scroll1" type="ScrollContainer" parent="Margin1/VBox1/Panel1"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 289.0
-margin_bottom = 122.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 292.0
+margin_bottom = 125.0
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/Panel1/Scroll1"]
-margin_right = 270.0
-margin_bottom = 264.0
+margin_right = 279.0
+margin_bottom = 274.0
 size_flags_horizontal = 3
-custom_constants/margin_top = 0
-custom_constants/margin_bottom = 0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
 
 [node name="CreditsContainer" type="VBoxContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1"]
 margin_left = 5.0
-margin_right = 265.0
-margin_bottom = 264.0
+margin_top = 5.0
+margin_right = 274.0
+margin_bottom = 269.0
 
 [node name="Grid2" type="HBoxContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid2"]
-margin_right = 125.0
+margin_right = 135.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.21
 text = "Coding"
 
 [node name="Label2" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid2"]
-margin_left = 129.0
-margin_right = 259.0
+margin_left = 139.0
+margin_right = 269.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -78,19 +79,19 @@ align = 2
 
 [node name="Label" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
 margin_top = 18.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 32.0
 text = "Assets"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
 margin_top = 36.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 40.0
 
 [node name="Grid1" type="GridContainer" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer"]
 margin_top = 44.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 264.0
 size_flags_horizontal = 3
 columns = 2
@@ -102,7 +103,7 @@ text = "Plants"
 
 [node name="Label2" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
 margin_left = 36.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "pistachio (opengameart.org)"
@@ -118,7 +119,7 @@ text = "Alien"
 [node name="Label4" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
 margin_left = 36.0
 margin_top = 18.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 text = "other guy (opengameart.org)"
@@ -133,7 +134,7 @@ text = "abcd"
 [node name="Label6" type="Label" parent="Margin1/VBox1/Panel1/Scroll1/Margin1/CreditsContainer/Grid1"]
 margin_left = 36.0
 margin_top = 36.0
-margin_right = 260.0
+margin_right = 269.0
 margin_bottom = 220.0
 size_flags_horizontal = 3
 text = "pistachio (opengameart.org)

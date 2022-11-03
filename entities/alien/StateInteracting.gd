@@ -25,7 +25,7 @@ func enter() -> void:
 			player.get_node("WaterPlant").play()
 		else:
 			player.get_node("HarvestPlant").play()
-#			anim_sprite.set_animation("harvest")
+			anim_sprite.set_animation("harvest")
 			pass
 
 # Override
