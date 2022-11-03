@@ -2,6 +2,10 @@ extends Node
 
 var permanent_text = ""
 
+func _ready():
+	if OS.has_feature("release"):
+		queue_free()
+
 func _process(_d) -> void:
 	$MarginContainer/PanelContainer/Label.text = permanent_text
 

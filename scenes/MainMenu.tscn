@@ -1,13 +1,264 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://resources/ui/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/components/HoverableButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/ui/font_title.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://resources/ui/font_default_small.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/tiles/barrier.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles/moon_tileset.png" type="Texture" id=7]
+[ext_resource path="res://assets/background/background2.png" type="Texture" id=8]
+[ext_resource path="res://assets/background/background0.png" type="Texture" id=9]
+[ext_resource path="res://assets/background/background1.png" type="Texture" id=10]
+[ext_resource path="res://assets/plants/plant-regular.png" type="Texture" id=11]
+[ext_resource path="res://assets/plants/plant-boost.png" type="Texture" id=12]
+[ext_resource path="res://assets/plants/plant-eater.png" type="Texture" id=13]
+[ext_resource path="res://assets/plants/plant-weed.png" type="Texture" id=14]
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="TileSet" id=4]
+1/name = "barrier.png 1"
+1/texture = ExtResource( 6 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "moon_tileset.png 2"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 32, 96, 32, 96 )
+2/tile_mode = 1
+2/autotile/bitmask_mode = 1
+2/autotile/bitmask_flags = [ Vector2( 0, 0 ), 23593104, Vector2( 0, 1 ), 32309266, Vector2( 0, 2 ), 63, Vector2( 1, 0 ), 23593104 ]
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 32, 32 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 3 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "moon_tileset.png 3"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 32, 192, 32, 32 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "moon_tileset.png 4"
+4/texture = ExtResource( 7 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 128, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "moon_tileset.png 5"
+5/texture = ExtResource( 7 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 160, 32, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "moon_tileset.png 6"
+6/texture = ExtResource( 7 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 64, 128, 32, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "moon_tileset.png 7"
+7/texture = ExtResource( 7 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 64, 160, 32, 32 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "moon_tileset.png 8"
+8/texture = ExtResource( 7 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 96, 128, 32, 32 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "moon_tileset.png 9"
+9/texture = ExtResource( 7 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 128, 128, 32, 32 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 13 )
+region = Rect2( 82, 17, 42, 37 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 13 )
+region = Rect2( 124, -4, 40, 57 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 142, -5, 52, 70 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 4, -5, 43, 70 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 52, -5, 41, 70 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 14 )
+region = Rect2( 46, -2, 47, 40 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 12 )
+region = Rect2( 79, 13, 40, 67 )
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 4 )
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2( 161, 165 )
+
+[node name="Sprite" type="Sprite" parent="Background"]
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 512, 512 )
+
+[node name="Sprite2" type="Sprite" parent="Background"]
+position = Vector2( 0, -15 )
+texture = ExtResource( 9 )
+
+[node name="Sprite3" type="Sprite" parent="Background"]
+position = Vector2( 0, -9 )
+texture = ExtResource( 10 )
+
+[node name="TileMap" type="TileMap" parent="Background"]
+tile_set = SubResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -65554, 2, 0, -65553, 2, 0, -65552, 2, 0, -65551, 2, 0, -65550, 2, 0, -65549, 2, 0, -65548, 2, 0, -65547, 2, 0, -131062, 2, 0, -131061, 2, 0, -131060, 2, 0, -131059, 2, 0, -131058, 2, 0, -131057, 2, 0, -131056, 2, 0, -18, 2, 65536, -17, 2, 65536, -16, 2, 65536, -15, 2, 65536, -14, 2, 65536, -13, 2, 65536, -12, 2, 65536, -11, 6, 0, -10, 2, 1, -9, 2, 0, -8, 2, 0, -7, 2, 1, -6, 2, 0, -5, 2, 1, -4, 2, 1, -3, 2, 1, -2, 2, 1, -1, 2, 1, -65536, 2, 1, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 1, -65530, 2, 1, -65529, 2, 0, -65528, 2, 1, -65527, 2, 1, -65526, 4, 0, -65525, 2, 65536, -65524, 2, 65536, -65523, 2, 65536, -65522, 2, 65536, -65521, 2, 65536, -65520, 2, 65536, 65505, 0, 0, 65506, 0, 0, 65507, 0, 0, 65508, 0, 0, 65509, 0, 0, 65510, 0, 0, 65511, 0, 0, 65512, 0, 0, 65513, 0, 0, 65514, 0, 0, 65515, 0, 0, 65516, 0, 0, 65517, 0, 0, 65518, 3, 0, 65519, 3, 0, 65520, 3, 0, 65521, 3, 0, 65522, 3, 0, 65523, 3, 0, 65524, 3, 0, 65525, 7, 0, 65526, 9, 0, 65527, 2, 65536, 65528, 2, 65536, 65529, 2, 65536, 65530, 2, 65536, 65531, 2, 65536, 65532, 2, 65536, 65533, 2, 65536, 65534, 2, 65536, 65535, 2, 65536, 0, 2, 65536, 1, 2, 65536, 2, 2, 65536, 3, 2, 65536, 4, 2, 65536, 5, 2, 65536, 6, 2, 65536, 7, 2, 65536, 8, 2, 65536, 9, 8, 0, 10, 5, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 2, 131072, 15, 3, 0, 16, 3, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 131041, 0, 65536, 131042, 0, 65536, 131043, 0, 65536, 131044, 0, 65536, 131045, 0, 65536, 131046, 0, 65536, 131047, 0, 65536, 131048, 0, 65536, 131049, 0, 65536, 131050, 0, 65536, 131051, 0, 65536, 131052, 0, 65536, 131053, 0, 65536, 131054, 3, 0, 131055, 3, 0, 131056, 3, 0, 131057, 3, 0, 131058, 3, 0, 131059, 3, 0, 131060, 3, 0, 131061, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 2, 131072, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 65553, 0, 65536, 65554, 0, 65536, 65555, 0, 65536, 65556, 0, 65536, 65557, 0, 65536, 65558, 0, 65536, 65559, 0, 65536, 65560, 0, 65536, 65561, 0, 65536, 65562, 0, 65536, 65563, 0, 65536, 196577, 0, 65536, 196578, 0, 65536, 196579, 0, 65536, 196580, 0, 65536, 196581, 0, 65536, 196582, 0, 65536, 196583, 0, 65536, 196584, 0, 65536, 196585, 0, 65536, 196586, 0, 65536, 196587, 0, 65536, 196588, 0, 65536, 196589, 0, 65536, 196590, 3, 0, 196591, 3, 0, 196592, 3, 0, 196593, 3, 0, 196594, 3, 0, 196595, 3, 0, 196596, 3, 0, 196597, 3, 0, 196598, 3, 0, 196599, 3, 0, 196600, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 3, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131086, 3, 0, 131087, 3, 0, 131088, 3, 0, 131089, 0, 65536, 131090, 0, 65536, 131091, 0, 65536, 131092, 0, 65536, 131093, 0, 65536, 131094, 0, 65536, 131095, 0, 65536, 131096, 0, 65536, 131097, 0, 65536, 131098, 0, 65536, 131099, 0, 65536, 262126, 3, 0, 262127, 3, 0, 262128, 3, 0, 262129, 3, 0, 262130, 3, 0, 262131, 3, 0, 262132, 3, 0, 262133, 3, 0, 262134, 3, 0, 262135, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, 262141, 3, 0, 262142, 3, 0, 262143, 3, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 196619, 3, 0, 196620, 3, 0, 196621, 3, 0, 196622, 3, 0, 196623, 3, 0, 196624, 3, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite9" type="Sprite" parent="Background"]
+position = Vector2( 136, -11 )
+texture = SubResource( 9 )
+
+[node name="Sprite10" type="Sprite" parent="Background"]
+position = Vector2( -124, -26 )
+texture = SubResource( 10 )
+
+[node name="Sprite4" type="Sprite" parent="Background"]
+position = Vector2( 105, -26 )
+texture = SubResource( 5 )
+
+[node name="Sprite5" type="Sprite" parent="Background"]
+position = Vector2( 144, -22 )
+texture = SubResource( 7 )
+
+[node name="Sprite6" type="Sprite" parent="Background"]
+position = Vector2( -162, -29 )
+texture = SubResource( 5 )
+
+[node name="Sprite7" type="Sprite" parent="Background"]
+position = Vector2( -95, -22 )
+texture = SubResource( 6 )
+
+[node name="Sprite11" type="Sprite" parent="Background"]
+position = Vector2( 179, -15 )
+texture = SubResource( 11 )
+
+[node name="Sprite8" type="Sprite" parent="Background"]
+position = Vector2( -84, -30 )
+texture = SubResource( 8 )
 
 [node name="Root" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -26,7 +277,7 @@ margin_top = 40.0
 margin_right = 326.0
 margin_bottom = 61.0
 custom_fonts/font = ExtResource( 3 )
-text = "Untitled Alien Vegetation game"
+text = "Moon Plantation"
 align = 1
 valign = 1
 
